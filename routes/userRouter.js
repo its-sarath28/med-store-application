@@ -61,7 +61,8 @@ userRouter.post(
       const { firstName, lastName, email, password } = req.body;
 
       try {
-        const userFound = await User.findOne({ email });
+        const emailToLower = await email.toLowerCase();
+        const userFound = await User.findOne({ email: emailToLower });
 
         if (userFound) {
           console.log(`User email already exists`);
@@ -81,7 +82,7 @@ userRouter.post(
         const user = await User.create({
           firstName,
           lastName,
-          email,
+          email: emailToLower,
           password: hashedPassword,
         });
 
@@ -119,7 +120,8 @@ userRouter.post(
       const { email, password } = req.body;
 
       try {
-        const userFound = await User.findOne({ email });
+        const emailToLower = await email.toLowerCase();
+        const userFound = await User.findOne({ email: emailToLower });
 
         if (!userFound) {
           return res.render("login", {

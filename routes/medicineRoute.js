@@ -91,7 +91,13 @@ medicineRouter.post(
       .notEmpty()
       .withMessage("Price is required")
       .isNumeric()
-      .withMessage("Price should be a number"),
+      .withMessage("Price should be a number")
+      .custom((value, { req }) => {
+        if (value < 1) {
+          throw new Error("Please enter a valid price");
+        }
+        return true;
+      }),
     body("category").notEmpty().withMessage("Category is required"),
     body("status").notEmpty().withMessage("Please select a status"),
   ],
