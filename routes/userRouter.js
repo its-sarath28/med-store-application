@@ -25,7 +25,7 @@ userRouter.post(
       .trim()
       .notEmpty()
       .withMessage("Last name is required")
-      .isAlpha()
+      .matches(/^[a-zA-Z ]*$/)
       .withMessage("Only letters are allowed"),
     body("email")
       .notEmpty()
