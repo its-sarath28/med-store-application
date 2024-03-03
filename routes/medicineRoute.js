@@ -249,7 +249,7 @@ medicineRouter.post("/delete-medicine/:id", async (req, res) => {
 
     await Medicine.findByIdAndDelete(req.params.id);
 
-    req.session.successMessage = "Medecine deleted successfully";
+    req.session.successMessage = "Medicine deleted successfully";
     res.redirect("/medicine");
   } catch (err) {
     console.error(err);
