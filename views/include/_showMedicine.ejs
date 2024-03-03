@@ -1,0 +1,68 @@
+<% let count=1; %>
+<% for(medicine of medicines) { %>
+<tr>
+    <th scope="row">
+        <%= count %>
+    </th>
+    <td>
+        <%= medicine.medicineName %>
+    </td>
+    <td>
+        <%= medicine.price %>
+    </td>
+    <td>
+        <%= medicine.category %>
+    </td>
+    <td>
+        <% if (medicine.status === "In-stock") { %>
+            <span class="text-success" >
+                <%= medicine.status %>
+            </span>
+        <% } else { %>
+            <span class="text-danger">
+                <%= medicine.status %>
+            </span>
+        <% } %>
+    </td>
+    <td>
+        <!-- Edit medicine button -->
+        <a href="/medicine/edit-medicine/<%= medicine._id %>" class="btn btn-primary">
+            <i class="fa-solid fa-pen-to-square"></i>
+        </a>
+
+        <!-- Delete Medicine button -->
+        <a href="/medicine/delete-medicine/<%= medicine._id %>" class="btn btn-danger mt-2 mt-md-0" data-bs-toggle="modal"
+            data-bs-target="#deleteModal<%= medicine._id %>">
+            <i class="bi bi-trash3"></i>
+        </a>
+
+        <!-- Delete Medicine Modal -->
+        <div class="modal fade" id="deleteModal<%= medicine._id %>" data-bs-backdrop="static"
+            data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteMedicineModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deleteMedicineModalLabel">Confirm Delete</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <form action="/medicine/delete-medicine/<%= medicine._id %>" method="post">
+                        <div class="modal-body">
+                            <p class="my-2">Are you sure that you want to delete <span class="fw-semibold">
+                                    <%= medicine.medicineName %>
+                                </span> ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </td>
+</tr>
+<% count++; %>
+    <% } %>

@@ -1,0 +1,89 @@
+<!-- header -->
+<%- include('include/_header') %>
+<!-- /header -->
+
+
+    <!-- navbar -->
+    <%- include('include/_navbar') %>
+    <!-- /navbar -->
+
+
+    <div class="container mx-auto">
+        <a href="/medicine" class="btn btn-dark mt-5">
+            <i class="bi bi-arrow-left me-2"></i>Back
+        </a>
+        <div class="row me-0">
+            <div class="row vh-90 d-flex align-items-center justify-content-center">
+                <div class="col-md-5 col-12 d-flex flex-column ">
+                    
+                    <h2 class="fw-semibold mb-4 text-center">Update Medicine</h2>
+
+                    <form action="/medicine/edit-medicine/<%= medicine._id %>" method="post">
+    
+                        <div class="inputs my-3">
+                            <div class="mb-3">
+                                <input type="text" name="medicineName" placeholder="Medicine name"
+                                    value="<%= medicine.medicineName %>" class="form-control mb-3 mb-md-0 border-0 bg-body-secondary">
+                                    <% if (errors && errors.medicineName) { %>
+                                        <span class="text-danger text-start">
+                                            <%= errors.medicineName.msg %>
+                                        </span>
+                                    <% } %>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" name="price" placeholder="Price"
+                                    value="<%= medicine.price %>" class="form-control border-0 bg-body-secondary">
+                                <% if (errors && errors.price) { %>
+                                    <span class="text-danger text-start">
+                                        <%= errors.price.msg %>
+                                    </span>
+                                    <% } %>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" name="category" placeholder="Category"
+                                    value="<%= medicine.category %>" class="form-control border-0 bg-body-secondary">
+                                    <% if (errors && errors.category) { %>
+                                        <span class="text-danger text-start">
+                                            <%= errors.category.msg %>
+                                        </span>
+                                    <% } %>
+                            </div>
+    
+                            <div class="bg-body-secondary p-2 rounded">
+                                <div class="d-md-flex">
+                                    <div class="col-3 mb-2 mb-md-0">
+                                        <label for="" class="">Status</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="status" value="In-stock" <%= medicine.status === "In-stock" ? "checked" : "" %>>
+                                            <label class="form-check-label fw-semibold" for="In stock">In stock</label>
+                                        </div>
+                                        <div class="form-check form-check-inline"> 
+                                            <input class="form-check-input" type="radio" name="status" value="Out-of stock" <%= medicine.status === "Out-of stock" ? "checked" : "" %>>
+                                            <label class="form-check-label fw-semibold" for="Out-of stock">Out of stock</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% if (errors && errors.status) { %>
+                                    <span class="text-danger text-start">
+                                        <%= errors.status.msg %>
+                                    </span>
+                                <% } %>
+                            </div>
+                        </div>
+
+                        <hr>
+    
+                        <div class=" mt-3 d-flex justify-content-between">
+                            <button type="submit" class="btn btn-success ms-auto">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- footer -->
+<%- include('include/_footer') %>
+<!-- /footer -->

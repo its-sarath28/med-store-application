@@ -1,0 +1,52 @@
+<!-- header -->
+<%- include('include/_header') %>
+<!-- /header -->
+
+
+<!-- navbar -->
+<%- include('include/_navbar') %>
+<!-- /navbar -->
+
+    <div class="container mt-5">
+        <div class="row my-4">
+            <div class="col-6 text-start align-items-center">
+                <a href="/medicine" class="btn btn-dark">
+                    <i class="bi bi-arrow-left me-2"></i>Back
+                </a>
+            </div>
+            <div class="col-6 text-end">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMedicineModal">
+                    <i class="bi bi-shield-plus me-2"></i>Add medicine
+                </button>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Medicine Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <% if (allMedicines.length===0) { %>
+                        <tr>
+                            <td colspan="5" class="text-center fw-semibold py-3 fs-5">No medicine</td>
+                        </tr>
+                    <% } else { %>
+                        <!-- Show Medicine -->
+                        <%- include('include/_showMedicine', {medicines: allMedicines}) %>
+                        <!-- /Show Medicine -->
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+<!-- footer -->
+<%- include('include/_footer') %>
+<!-- /footer -->

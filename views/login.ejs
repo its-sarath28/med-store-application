@@ -1,0 +1,52 @@
+<!-- header -->
+<%- include('include/_header') %>
+<!-- /header -->
+
+<div class="container-fluid bg-primary">
+    <div class="row vh-100">
+        <div class="col-12 d-flex flex-column align-items-center justify-content-center">
+            <div class="bg-white p-4 rounded rounded-lg col-md-4 col-9">
+                <h3 class="text-start fw-bold">Login</h3>
+
+                <form action="/users/login" method="post" class="d-flex flex-column">
+                    <div class="inputs my-3">
+                        <div class="my-1 text-center">
+                            <% if (errors && errors.invalid) { %>
+                                <span class="text-danger text-start">
+                                    <%= errors.invalid.msg %>
+                                </span>
+                            <% } %>
+                        </div>
+                        <div class="my-3">
+                            <input type="text" name="email" placeholder="Email" class="form-control border-0 bg-body-secondary" value="<%= values.email %>">
+                            <% if (errors && errors.email) { %>
+                                <span class="text-danger text-start">
+                                    <%= errors.email.msg %>
+                                </span>
+                            <% } %>
+                        </div>
+
+                        <div class="my-3">
+                            <input type="password" name="password" placeholder="Password" class="form-control border-0 bg-body-secondary">
+                            <% if (errors && errors.password) { %>
+                                <span class="text-danger text-start">
+                                    <%= errors.password.msg %>
+                                </span>
+                            <% } %>
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                        class="btn btn-primary btn-block mt-2 fw-bold px-3 text-center mx-md-auto">Login</button>
+                </form>
+            </div>
+
+            <p class="text-white mt-2 mb-0">Don't have an account? <a href="/users/register" class="text-white">Create one.</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- footer -->
+<%- include('include/_footer') %>
+<!-- /footer -->

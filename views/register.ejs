@@ -1,0 +1,78 @@
+<!-- header -->
+<%- include('include/_header') %>
+<!-- /header -->
+
+    <div class="container-fluid bg-primary">
+        <div class="row vh-100">
+            <div class="col-12 d-flex flex-column align-items-center justify-content-center">
+                <div class="bg-white p-4 rounded rounded-lg ">
+                    <h3 class="text-start fw-bold">Register</h3>
+                    <p class="text-muted">Please fill in this form to create an account</p>
+                    <form action="/users/register" method="post" class=" d-flex flex-column">
+
+                        <div class="inputs my-3">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <input type="text" name="firstName" placeholder="First Name"
+                                        class="form-control mb-3 mb-md-0 border-0 bg-body-secondary" value="<%= values.firstName %>">
+                                    <% if (errors && errors.firstName) { %>
+                                        <span class="text-danger text-start">
+                                            <%= errors.firstName.msg %>
+                                        </span>
+                                    <% } %>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="lastName" placeholder="Last Name"
+                                        class="form-control border-0 bg-body-secondary" value="<%= values.lastName %>">
+                                    <% if (errors && errors.lastName) { %>
+                                        <span class="text-danger">
+                                            <%= errors.lastName.msg %>
+                                        </span>
+                                    <% } %>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="text" name="email" placeholder="Email" class="form-control border-0 bg-body-secondary" value="<%= values.email %>">
+                                <% if (errors && errors.email) { %>
+                                    <span class="text-danger">
+                                        <%= errors.email.msg %>
+                                    </span>
+                                <% } %>
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="password" name="password" placeholder="Password" class="form-control border-0 bg-body-secondary">
+                                <% if (errors && errors.password) { %>
+                                    <span class="text-danger">
+                                        <%= errors.password.msg %>
+                                    </span>
+                                <% } %>
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="password" name="cnfPassword" placeholder="Confirm Password"
+                                    class="form-control border-0 bg-body-secondary">
+                                <% if (errors && errors.cnfPassword) { %>
+                                    <span class="text-danger">
+                                        <%= errors.cnfPassword.msg %>
+                                    </span>
+                                <% } %>
+                            </div>
+
+                        </div>
+
+                        <button type="submit"
+                            class="btn btn-primary btn-block mt-2 fw-bold px-3 text-center mx-md-auto">Register</button>
+                    </form>
+                </div>
+
+                <p class="text-white mt-2 mb-0">Already have an account? <a href="/users/login" class="text-white">Login
+                        here.</a></p>
+            </div>
+        </div>
+    </div>
+
+<!-- footer -->
+<%- include('include/_footer') %>
+<!-- /footer -->
