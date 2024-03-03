@@ -1,7 +1,21 @@
-<h1>
-    <%= message %>
-</h1>
-<h2 class="fs-3">
-    <%= error.status %>
-</h2>
-<pre><%= error.stack %></pre>
+<!-- header -->
+<%- include('include/_header') %>
+<!-- /header -->
+
+<div class="container">
+    <div class="row vh-100">
+        <div class="col d-flex flex-column align-items-center justify-content-center">
+            <!-- <h1><%= message %></h1> -->
+            <h3 class="mb-1">OOPS PAGE NOT FOUND</h3>
+            <h1 class="not-found-status"><%= error.status %></h1>
+            <!-- <pre><%= error.stack %></pre> -->
+            <p>We're sorry but the page you requested was not found</p>
+            <a href="/medicine" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+</div>
+
+
+<!-- footer -->
+<%- include('include/_footer') %>
+<!-- /footer -->

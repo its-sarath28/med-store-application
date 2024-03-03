@@ -1,11 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body{
+  font-family: "Roboto", sans-serif;
+}
+
 .table-responsive {
   height: 30rem;
 }
 
-.vh-90 {
+.vh-65 {
   height: 65vh;
 }
 
-/* .vh-90 form {
-  max-width: 30rem;
-} */
+.not-found-status{
+  font-size: 15rem;
+}

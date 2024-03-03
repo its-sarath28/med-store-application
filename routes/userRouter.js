@@ -17,6 +17,8 @@ userRouter.post(
       .trim()
       .notEmpty()
       .withMessage("First name is required")
+      .isLength({ min: 3 })
+      .withMessage("First name should be 3 atleast characters long")
       .isAlpha()
       .withMessage("Only letters are allowed"),
     body("lastName")

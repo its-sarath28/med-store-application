@@ -13,7 +13,7 @@
             <i class="bi bi-arrow-left me-2"></i>Back
         </a>
         <div class="row me-0">
-            <div class="row vh-90 d-flex align-items-center justify-content-center">
+            <div class="row vh-65 d-flex align-items-center justify-content-center">
                 <div class="col-md-5 col-12 d-flex flex-column ">
                     
                     <h2 class="fw-semibold mb-4 text-center">Update Medicine</h2>
@@ -39,14 +39,21 @@
                                     </span>
                                     <% } %>
                             </div>
+
                             <div class="mb-3">
-                                <input type="text" name="category" placeholder="Category"
-                                    value="<%= medicine.category %>" class="form-control border-0 bg-body-secondary">
-                                    <% if (errors && errors.category) { %>
-                                        <span class="text-danger text-start">
-                                            <%= errors.category.msg %>
-                                        </span>
-                                    <% } %>
+                                <select class="form-select form-control" name="category" aria-label="Medicine Category">                            
+                                    <% categories.forEach(category=> { %>
+                                        <option value="<%= category.value %>" <%=medicine && medicine.category===category.value ? 'selected' : '' %>>
+                                            <%= category.name %>
+                                        </option>
+                                    <% }); %>                            
+                                </select>
+
+                                <% if (errors && errors.category) { %>
+                                    <span class="text-danger text-start">
+                                        <%= errors.category.msg %>
+                                    </span>
+                                <% } %>
                             </div>
     
                             <div class="bg-body-secondary p-2 rounded">
