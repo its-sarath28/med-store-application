@@ -43,7 +43,7 @@
                             <div class="mb-3">
                                 <select class="form-select form-control" name="category" aria-label="Medicine Category">                            
                                     <% categories.forEach(category=> { %>
-                                        <option value="<%= category.value %>" <%=medicine && medicine.category===category.value ? 'selected' : '' %>>
+                                        <option value="<%= category.value %>" <%=medicine && medicine.category === category.value ? 'selected' : '' %>>
                                             <%= category.name %>
                                         </option>
                                     <% }); %>                            

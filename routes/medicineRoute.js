@@ -56,20 +56,26 @@ const categories = [
 medicineRouter.get("/", async (req, res) => {
   try {
     const allMedicines = await Medicine.find({}).sort({ createdAt: -1 });
+    const successMessage = req.session.successMessage;
+    req.session.successMessage = null;
 
-    res.render("medicine", { allMedicines });
+    res.render("medicine", { allMedicines, successMessage });
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error while rendering the medicine");
+    res.status(500).render("error");
   }
 });
 
 medicineRouter.get("/add-medicine", async (req, res) => {
   try {
-    res.render("addMedicine", { errors: "", values: "", categories });
+    res.render("addMedicine", {
+      errors: "",
+      values: "",
+      categories,
+    });
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error while rendering add medicine");
+    res.status(500).render("error");
   }
 });
 
@@ -114,6 +120,7 @@ medicineRouter.post(
               },
             },
             values: req.body,
+            categories,
           });
         }
 
@@ -125,10 +132,11 @@ medicineRouter.post(
         });
 
         await medicine.save();
+        req.session.successMessage = "Medicine added successfully";
         res.redirect("/medicine");
       } catch (err) {
         console.error(err);
-        res.status(500).json("Error while adding the medicine!");
+        res.status(500).render("error");
       }
     }
   }
@@ -149,7 +157,7 @@ medicineRouter.get("/search-medicine", async (req, res) => {
     res.render("searchMedicine", { allMedicines: searchResults });
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error while searching the medicine!");
+    res.status(500).render("error");
   }
 });
 
@@ -163,7 +171,7 @@ medicineRouter.get("/edit-medicine/:id", async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error while rendering add medicine");
+    res.status(500).render("error");
   }
 });
 
@@ -214,10 +222,11 @@ medicineRouter.post(
           { new: true }
         );
 
+        req.session.successMessage = "Medicine updated successfully";
         res.redirect("/medicine");
       } catch (err) {
         console.error(err);
-        res.status(500).send("Error while adding the medicine!");
+        res.status(500).render("error");
       }
     }
   }
@@ -234,10 +243,11 @@ medicineRouter.post("/delete-medicine/:id", async (req, res) => {
 
     await Medicine.findByIdAndDelete(req.params.id);
 
+    req.session.successMessage = "Medecine deleted successfully";
     res.redirect("/medicine");
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error while deleting the medicine!");
+    res.status(500).render("error");
   }
 });
 

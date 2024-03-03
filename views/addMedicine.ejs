@@ -14,7 +14,7 @@
         </a>
         <div class="row justify-content-center">
             <div class="row vh-65 d-flex align-items-center justify-content-center">
-                <div class="col-md-5 col-12 d-flex flex-column">
+                <div class="col-md-5 col-12 d-flex flex-column my-auto">
 
                     <h2 class="fw-semibold mb-4 text-center">Add Medicine</h2>
     
@@ -45,7 +45,7 @@
                                     <option selected hidden>Choose a category</option>
 
                                     <% categories.forEach(category=> { %>
-                                        <option value="<%= category.value %>" <%=values && values.category===category.value ? 'selected' : '' %>>
+                                        <option value="<%= category.value %>" <%=values && values.category === category.value ? 'selected' : '' %>>
                                             <%= category.name %>
                                         </option>
                                     <% }); %>
